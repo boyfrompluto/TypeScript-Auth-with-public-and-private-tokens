@@ -14,8 +14,10 @@ export function signJwt(
     config.get<string>(keyName),
     "base64"
     ).toString("ascii");
+    logger.info(signingKey)
     return jwt.sign(object,signingKey,{
         ...(options&&options),
+        algorithm: "RS256",
     });
 }
 
@@ -23,22 +25,22 @@ export function verifyJwt(
     token:string,
     keyName:"accessPublicKey"|"refreshPublicKey",
     ){
-try {
+    try {
     const publicKey = Buffer.from(config.get<string>(keyName), "base64").toString(
         "ascii"
       );
     const decoded= jwt.verify(token,publicKey);
+    logger.info("decoded",decoded)
     return{
         valid:true,
         expired:false,
         decoded
-    }
-} catch (e:any) {
+    };
+}   catch (e:any) {
     logger.error(e);
     return{
         valid:false,
         expired:e.message==="jwt expired",
-        decoded:null,
+        decoded:null}
     }
-}
 }

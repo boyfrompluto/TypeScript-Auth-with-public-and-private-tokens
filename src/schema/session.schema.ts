@@ -9,6 +9,6 @@ import {object,string}from "zod";
         required_error: "Password is required"
     }),
        
-    })
-})
+    }),
+});
 
