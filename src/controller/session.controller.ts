@@ -34,5 +34,5 @@ import logger from "../utils/logger";
     
     const sessions= await findSessions({user:userId,valid:true})
     res.status(200).send(sessions)
-    logger.info(sessions)
+   
 }  
