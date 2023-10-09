@@ -1,49 +1,14 @@
+
+
 export default{
     port:1337,
+
     dbUri:"mongodb://127.0.0.1:27017/RestApiTypescript",
     saltWorkFactor:10,
-    accessPrivateKey:`-----BEGIN RSA PRIVATE KEY-----
-    MIICXAIBAAKBgQCm3bfNfwE13Ih4DiwfMPY5GRkcp2LIySrwGwqdoELBRBXoui9L
-    Gy0o1TggjYPoFG1SFg2o80o4uItJyuU7vMD4/E6JI+sqWpQEbwCQg4HG992I2cxY
-    ccW5sMdlwRztVcPvs/wgW8t64OF8ld5w4JkxfAaUsbZDQ6dVlrV88hsxCwIDAQAB
-    AoGAFYJ/Lv4wKcFD1jX9egfVtYaGtirdkQRdhJX3yFngQQmFyXo2nnfiWmEh2xBi
-    8Iexj+NH3399EdK4IcsFwa2TMlAJp6H51mKGeP7/w8qRyZHkKyX+vd5vO091v7+Y
-    YXDdMGhxIvolwBH/y55TygSFD15bLIVppJR9bwnKt4NGOAECQQDRU2YMIBlSByzd
-    QmlNMK9jPPIepoK/xiwyorfd/nzUbb6YjKaAlvjIcMpsHrIyzDsiJzq6Acu2bv+o
-    9f9uHDyFAkEAzBKph0OKWxHThlNm5iXQrmSOqlz9idf8E+3qVM/c1MWrHkw4i2zt
-    AxxnjaVPZZYOfW6JdwiHH5VR1Lmh8Ku0TwJAbnfO0PNXqXxz5siXfc8FoB+Xvyks
-    szxIMujAk/0rr4fDIAqKDC6gWFd93BVPAZPaWSnOyj8MXNizP12jUV7BaQJBAIqK
-    sOTPiYJCG+Q5gsYELiP2yJQIBWgrZUryXf+uDjG08HLlNA4TqORPyE11SO2ibbvh
-    6xkQhQuAB8nvLG2DZCkCQCfQyOOqwH39acvSx13PMY/ZOxts3LIZIukJOytuvbiO
-    clGQsdcYsyxgCqrN1rAn3c4nYllrgSWtTvgdVwYLJDQ=
-    -----END RSA PRIVATE KEY-----`,
-    accessPublicKey:`-----BEGIN PUBLIC KEY-----
-    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCm3bfNfwE13Ih4DiwfMPY5GRkc
-    p2LIySrwGwqdoELBRBXoui9LGy0o1TggjYPoFG1SFg2o80o4uItJyuU7vMD4/E6J
-    I+sqWpQEbwCQg4HG992I2cxYccW5sMdlwRztVcPvs/wgW8t64OF8ld5w4JkxfAaU
-    sbZDQ6dVlrV88hsxCwIDAQAB
-    -----END PUBLIC KEY-----`,
-    refreshPrivateKey:`-----BEGIN RSA PRIVATE KEY-----
-    MIICXQIBAAKBgQC+SLweTlvyCANCv/QQv2ILDWEMZ65OSpjWHkUObNRi+LU46yss
-    kRt0BTh8VKiGKbQDwkEcE8b3T0NBIveIKfLaVm02aE3FGUVWjL0e+E9JEu/Hd2TT
-    PqF5nINtmBi4jNx2OYtb3kecRcM77takH7NP/mpBIECuuLZTTCOaTLb9UQIDAQAB
-    AoGAViAXvWPcK/VCfJDjSD1HhBcfKP04oMkU2j1DJl9N1ioZ5FRU60wWb/H4+hVb
-    XbY8e0MOM0YkVUWz/CR2g1PxTedtapheDE640hBYxgqOFS9CeqtMk7vj/Wj6K79V
-    kIRyIcsHX6dlud6hW1mZ4SoXag13BHBWxAg7OaJqvEZcHN0CQQDstV0duci79dar
-    q69EejRzmPENoNPczvhPdYwxTSeMVz6fcF8Jezpeq5+gn6Ow70mhlLa0ALVP0s/o
-    fbJSojA/AkEAzcrIjx9x/0hUYZDVS5hBr9E7mLHoggHJrMAZH3aV1/GevbZnibqa
-    DFjhrROwSJSTB1MhHymXvaloHuMvDhdubwJAfeeeBtCqB+gkbh2c1TSXL6F7Hj+c
-    UUe5ZjJlBlg+n/RL9+yCcH2eN3rcJkijfdpZdNuwLqBt0G6WbdhmAHQKawJBAJ9h
-    r2URgJOrLBcIOfm7KRyHGvYOy7lsswpFGPACQtklO8FIdPX5fHeVmusV9ZCw6RJi
-    MqPU7b2pZ4eMghQS16cCQQCDI1nFjknT8DY/Dc491QblqdaBAsmWsCx17vP2svb4
-    OfwyrrpPs659Ql5wwyDqSkXtstvDBAt+nlVKHPO0mKPH
-    -----END RSA PRIVATE KEY-----`,
-    refreshPublicKey:`-----BEGIN PUBLIC KEY-----
-    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+SLweTlvyCANCv/QQv2ILDWEM
-    Z65OSpjWHkUObNRi+LU46ysskRt0BTh8VKiGKbQDwkEcE8b3T0NBIveIKfLaVm02
-    aE3FGUVWjL0e+E9JEu/Hd2TTPqF5nINtmBi4jNx2OYtb3kecRcM77takH7NP/mpB
-    IECuuLZTTCOaTLb9UQIDAQAB
-    -----END PUBLIC KEY-----`,
+    accessPrivateKey:"./cert/accessPrivateKey.pem",
+    accessPublicKey:"./cert/accessPublicKey.pem",
+    refreshPrivateKey:"./cert/refreshPrivateKey.pem",
+    refreshPublicKey:"./cert/refreshPublicKey.pem",
     accessTokenTtl:"15m",
     refreshTokenTtl:"1y",
 

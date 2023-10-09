@@ -1,6 +1,7 @@
 import jwt, { TokenExpiredError } from "jsonwebtoken";
 import config from "config";
-import logger from "./logger"
+import logger from "./logger";
+import * as fs from "fs";
 
 
 
@@ -10,12 +11,9 @@ export function signJwt(
     keyName:"accessPrivateKey"|"refreshPrivateKey",
     options?:jwt.SignOptions|undefined){
     
-    const signingKey = Buffer.from(
-    config.get<string>(keyName),
-    "base64"
-    ).toString("ascii");
-    logger.info(signingKey)
-    return jwt.sign(object,signingKey,{
+    const signingKey =<string>config.get(keyName);
+    
+    return jwt.sign(object,fs.readFileSync(`${signingKey}`),{
         ...(options&&options),
         algorithm: "RS256",
     });
@@ -26,11 +24,8 @@ export function verifyJwt(
     keyName:"accessPublicKey"|"refreshPublicKey",
     ){
     try {
-    const publicKey = Buffer.from(config.get<string>(keyName), "base64").toString(
-        "ascii"
-      );
-    const decoded= jwt.verify(token,publicKey);
-    logger.info("decoded",decoded)
+    const publicKey =config.get<string>(keyName);
+    const decoded= jwt.verify(token,fs.readFileSync(`${publicKey}`));
     return{
         valid:true,
         expired:false,

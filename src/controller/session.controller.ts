@@ -29,10 +29,10 @@ import logger from "../utils/logger";
 
 };
  export async function getUserSessonsHandler(req:Request,res:Response){
-    // const userId=res.locals.user._id;
+    const userId=res.locals.user._id;
    
     
-    // const sessions= await findSessions({user:userId,valid:true})
-    // logger.info(sessions)
-    // res.status(200).send(sessions)
+    const sessions= await findSessions({user:userId,valid:true})
+    res.status(200).send(sessions)
+    logger.info(sessions)
 }  
