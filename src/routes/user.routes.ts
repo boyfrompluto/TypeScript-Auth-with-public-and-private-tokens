@@ -3,7 +3,7 @@ import {Express,Request,Response} from "express"
 import { createUserHandler } from "../controller/user.controller"
 import validate from "../middleware/validateResource"
 import { createUserSchema } from "../schema/user.schema"
-import { createSessonHandler, getUserSessonsHandler } from "../controller/session.controller";
+import { createSessonHandler, deleteSessionHandler, getUserSessonsHandler } from "../controller/session.controller";
 import { createSessionSchema } from "../schema/session.schema";
 import requireUser from "../middleware/requireUser";
 function routes(app:Express){
@@ -13,6 +13,7 @@ function routes(app:Express){
     app.post("/api/users",validate(createUserSchema),createUserHandler);
     app.post("/api/sessions",validate(createSessionSchema),createSessonHandler);
     app.get("/api/sessions",requireUser,getUserSessonsHandler);
+    app.delete("/api/sessions",requireUser,deleteSessionHandler);
 
 }
 
