@@ -29,3 +29,7 @@ export async function validatePassword({email,password}:{
     return omit(user.toJSON(),"password");
 
 }
+
+export async function findUser(query:FilterQuery<UserDocument>) {
+    return User.findOne(query).lean();
+}
