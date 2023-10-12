@@ -11,7 +11,9 @@ const deserializeUser=async (req:Request,res:Response,next:NextFunction)=>{
     const refreshToken=<string>get(req,"headers.x-refresh")
     const authToken=<string>req.headers.authorization;
     const authToken2=authToken.split(" ")
-    const accessToken=<string>authToken2[1]
+    const accessToken=<string>authToken2[1];
+
+
     const {decoded,expired}= verifyJwt(accessToken,"accessPublicKey")
 
     
@@ -31,6 +33,8 @@ const deserializeUser=async (req:Request,res:Response,next:NextFunction)=>{
         res.locals.user=result.decoded
 
         return next()
+    }else{
+        res.sendStatus(403);
     }
     
      

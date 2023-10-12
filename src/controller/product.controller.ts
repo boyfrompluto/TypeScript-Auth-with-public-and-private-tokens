@@ -35,7 +35,7 @@ export async function updateProductHandler(req:Request<UpdateProductInput["param
     if(!product){
         return res.sendStatus(404)
     }
-    if(product.user !==userId){
+    if(String(product.user) !==userId){
         return res.sendStatus(403)
     }
 
@@ -49,13 +49,14 @@ export async function deleteProductHandler(req:Request<UpdateProductInput["param
 
     const product= await findProduct({productId});
     if(!product){
+        logger.info("notty")
         return res.sendStatus(404)
     }
-   if(product.user!==userId){
+    if(String(product.user)!==userId){
     return res.sendStatus(403)
-   }
+    }
+    
+    await deleteProduct({productId:productId});
 
-   await deleteProduct({productId});
-
-   res.sendStatus(200)
+    res.sendStatus(200)
 }

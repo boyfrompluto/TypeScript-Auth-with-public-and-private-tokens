@@ -12,7 +12,7 @@ export async function findProduct(query:FilterQuery<ProductDocument>,options:Que
 export async function findAndUpdateProduct(
     query:FilterQuery<ProductDocument>,update:UpdateQuery<ProductDocument>,options:QueryOptions
 ){
-    Product.findOneAndUpdate(query,update,options)
+    return Product.findOneAndUpdate(query,update,options)
 }
 export async function deleteProduct(query:FilterQuery<ProductDocument>){
     return Product.deleteOne(query)
