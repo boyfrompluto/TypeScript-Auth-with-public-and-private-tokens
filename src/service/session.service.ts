@@ -6,41 +6,49 @@ import { get } from "lodash";
 import { findUser } from "./user.service";
 import config from "config";
 
-export async function createSession(userId:string,userAgent:string){
-    const session = await Session.create({user:userId,userAgent});
+export async function createSession(userId: string, userAgent: string) {
+    const session = await Session.create({ user: userId, userAgent });
     return session.toJSON();
 }
 
-export async function findSessions(query:FilterQuery<SessionDocument>){
+export async function findSessions(query: FilterQuery<SessionDocument>) {
     return Session.find(query).lean();
 }
 
-export async function updateSession(query:FilterQuery<SessionDocument>,update:UpdateQuery<SessionDocument>) {
-    return Session.updateOne(query,update)
+export async function updateSession(
+    query: FilterQuery<SessionDocument>,
+    update: UpdateQuery<SessionDocument>
+) {
+    return Session.updateOne(query, update);
 }
 
-export async function reIssueAccessToken({refreshToken}:{
-    refreshToken:string
+export async function reIssueAccessToken({
+    refreshToken,
+}: {
+    refreshToken: string;
 }) {
-    const {decoded}=verifyJwt(refreshToken,"refreshPublicKey");
+    const { decoded } = verifyJwt(refreshToken, "refreshPublicKey");
 
-    if(!decoded ||!get(decoded,"session")) return false
+    if (!decoded || !get(decoded, "session")) return false;
 
-    const session= await Session.findById(get(decoded,"session"));
+    const session = await Session.findById(get(decoded, "session"));
 
-    if(!session||!session.valid) return false;
+    if (!session || !session.valid) return false;
 
-    const user= await findUser({_id:session.user})
+    const user = await findUser({ _id: session.user });
 
-    if(!user) return false;
+    if (!user) return false;
 
-    const accessToken= signJwt({
-        ...user,session:session._id},
+    const accessToken = signJwt(
+        {
+            ...user,
+            session: session._id,
+        },
         "accessPrivateKey",
         {
-        expiresIn: config.get("accessTokenTtl")
-    })
+            expiresIn: config.get("accessTokenTtl"),
+        }
+    );
 
-    return accessToken
-
+    return accessToken;
 }

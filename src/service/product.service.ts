@@ -1,19 +1,27 @@
 import { FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
-import Product, { ProductDocument, productInput } from "../models/product.model";
+import Product, {
+    ProductDocument,
+    productInput,
+} from "../models/product.model";
 
-export async function creatProduct(input:productInput){
-    return Product.create(input)
+export async function creatProduct(input: productInput) {
+    return Product.create(input);
 }
-export async function findProduct(query:FilterQuery<ProductDocument>,options:QueryOptions={
-    lean:true
-}){
-    return Product.findOne(query,{},options)
+export async function findProduct(
+    query: FilterQuery<ProductDocument>,
+    options: QueryOptions = {
+        lean: true,
+    }
+) {
+    return Product.findOne(query, {}, options);
 }
 export async function findAndUpdateProduct(
-    query:FilterQuery<ProductDocument>,update:UpdateQuery<ProductDocument>,options:QueryOptions
-){
-    return Product.findOneAndUpdate(query,update,options)
+    query: FilterQuery<ProductDocument>,
+    update: UpdateQuery<ProductDocument>,
+    options: QueryOptions
+) {
+    return Product.findOneAndUpdate(query, update, options);
 }
-export async function deleteProduct(query:FilterQuery<ProductDocument>){
-    return Product.deleteOne(query)
+export async function deleteProduct(query: FilterQuery<ProductDocument>) {
+    return Product.deleteOne(query);
 }
